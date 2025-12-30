@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебе</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Lora:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #ffd6e8 0%, #e6d5f7 25%, #d4e4ff 50%, #ffe8d6 75%, #ffeef8 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,182,193,0.6) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: sparkleFloat 6s infinite;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { transform: translateY(-100px) scale(1.5); opacity: 1; }
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 35px;
+            padding: 80px 70px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 2s ease-in;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 50px 0 60px 0;
+            border-bottom: 3px solid rgba(199, 123, 159, 0.3);
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 240, 248, 0.3), rgba(245, 235, 255, 0.3));
+            border-radius: 25px;
+        }
+
+        .header::before,
+        .header::after {
+            content: '✿';
+            position: absolute;
+            font-size: 3em;
+            color: #c77b9f;
+            opacity: 0.5;
+            animation: twinkle 3s infinite;
+        }
+
+        .header::before {
+            left: 15%;
+            top: 30px;
+        }
+
+        .header::after {
+            right: 15%;
+            top: 30px;
+            animation-delay: 1.5s;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5em;
+            background: linear-gradient(135deg, #c77b9f 0%, #9b8fb5 50%, #c77b9f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 12px;
+            text-shadow: none;
+            animation: titleGlow 3s ease-in-out infinite;
+            filter: drop-shadow(2px 2px 4px rgba(199, 123, 159, 0.4));
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(2px 2px 4px rgba(199, 123, 159, 0.4)); }
+            50% { filter: drop-shadow(2px 2px 15px rgba(199, 123, 159, 0.6)); }
+        }
+
+        .decorative-ornament {
+            font-size: 2em;
+            color: #c77b9f;
+            margin: 30px 0;
+            letter-spacing: 20px;
+            text-shadow: 1px 1px 3px rgba(199, 123, 159, 0.3);
+            opacity: 0.7;
+        }
+
+        .greeting {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6em;
+            color: #6b5b7f;
+            line-height: 2;
+            margin: 40px 0;
+            font-weight: 400;
+            padding: 0 40px;
+            font-style: italic;
+        }
+
+        .greeting-name {
+            background: linear-gradient(90deg, #c77b9f 0%, #b88aad 50%, #c77b9f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 1.15em;
+            filter: drop-shadow(1px 1px 2px rgba(199, 123, 159, 0.3));
+        }
+
+        .section {
+            margin: 50px 0;
+            padding: 40px;
+            border-radius: 25px;
+            animation: slideIn 1s ease-out backwards;
+        }
+
+        .section:nth-child(1) {
+            background: linear-gradient(135deg, rgba(255, 228, 225, 0.5), rgba(255, 239, 245, 0.5));
+            animation-delay: 0.3s;
+        }
+
+        .section:nth-child(2) {
+            background: linear-gradient(135deg, rgba(230, 230, 250, 0.5), rgba(245, 235, 255, 0.5));
+            animation-delay: 0.6s;
+        }
+
+        .section:nth-child(3) {
+            background: linear-gradient(135deg, rgba(224, 242, 255, 0.5), rgba(235, 245, 255, 0.5));
+            animation-delay: 0.9s;
+        }
+
+        .section:nth-child(4) {
+            background: linear-gradient(135deg, rgba(255, 245, 230, 0.5), rgba(255, 250, 240, 0.5));
+            animation-delay: 1.2s;
+        }
+
+        .section:nth-child(5) {
+            background: linear-gradient(135deg, rgba(255, 228, 241, 0.5), rgba(255, 240, 248, 0.5));
+            animation-delay: 1.5s;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        p {
+            font-size: 1.85em;
+            line-height: 2.1;
+            color: #4a4a6a;
+            margin-bottom: 30px;
+            text-align: justify;
+            font-weight: 400;
+            text-shadow: 0.5px 0.5px 1px rgba(74, 74, 106, 0.1);
+        }
+
+        .closing {
+            text-align: center;
+            margin-top: 70px;
+            padding: 60px 50px 50px 50px;
+            border-top: 3px solid rgba(199, 123, 159, 0.3);
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 240, 248, 0.3), rgba(245, 235, 255, 0.3));
+            border-radius: 25px;
+        }
+
+        .closing::before {
+            content: '❀';
+            position: absolute;
+            font-size: 3.5em;
+            color: #c77b9f;
+            opacity: 0.4;
+            left: 15%;
+            top: 25px;
+            animation: twinkle 2s infinite;
+        }
+
+        .closing::after {
+            content: '❀';
+            position: absolute;
+            font-size: 3.5em;
+            color: #9b8fb5;
+            opacity: 0.4;
+            right: 15%;
+            top: 25px;
+            animation: twinkle 2.5s infinite;
+        }
+
+        .closing h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8em;
+            background: linear-gradient(135deg, #c77b9f 0%, #b88aad 50%, #c77b9f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            font-weight: 600;
+            filter: drop-shadow(2px 2px 3px rgba(199, 123, 159, 0.3));
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #9b8fb5 0%, #b88aad 50%, #9b8fb5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: normal;
+            margin-top: 45px;
+            font-weight: 700;
+            position: relative;
+            filter: drop-shadow(1px 1px 2px rgba(155, 143, 181, 0.3));
+        }
+
+        .signature::after {
+            content: '♥';
+            display: block;
+            color: #ffb6d9;
+            font-size: 1.8em;
+            margin-top: 25px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(255, 182, 217, 0.4);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+
+        .yours-truly {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            color: #9b8fb5;
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 50px 35px;
+            }
+            
+            .header h1 {
+                font-size: 3em;
+            }
+            
+            p {
+                font-size: 1.5em;
+            }
+
+            .closing h2 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="decorative-ornament">✧ ✧ ✧</div>
+            <h1>2026</h1>
+            <div class="decorative-ornament">✧ ✧ ✧</div>
+            <p class="greeting">
+                Вітаю тебе з Новим Роком, <span class="greeting-name">Улян</span>!<br>
+                Хочу поділитися з тобою чимось важливим...
+            </p>
+        </div>
+
+        <div class="section">
+            <p>Що ж, 2025-й добігає кінця.</p>
+            <p>Ти колись сказала: "Можу розповідати тобі все, бо знаю, ти не засудиш". А я можу розповідати тобі багато, бо знаю, ти теж мене не засудиш.</p>
+            <p>Рік був важким, але завдяки тобі трохи легшим. Я не надто легко довіряю, але ти людина, яка постійно доводить, що гідна довіри. Щоразу, коли я ділився чимось особистим, ти ніколи не казала, що я надто драматичний чи емоційний. Ти просто залишалась, слухала й підтримувала, і це справді має значення.</p>
+        </div>
+
+        <div class="section">
+            <p>Я збираю компліменти, як подарунки. Я пам'ятаю кожен. Коли ти сказала, що мене цікаво слухати, це було не просто приємно для людини із (недіагнозованою на той час ;) соціальним тривожним розладом — це був величезний крок, перемога. Завдяки тобі я засвоїв урок, який знав, але усвідомив: просити про допомогу — це не слабкість.</p>
+        </div>
+
+        <div class="section">
+            <p>Ти бачиш у людях хороше, і я хочу, щоб ти бачила хороше в собі. Ти по-справжньому добра, з тією добротою, якій не потрібні ані увага, ані похвала. Як ти бачиш літніх жінок і поспішаєш допомогти — це безкорислива, здавалось би, маленька доброта, яка не потребує похвали чи уваги, бо вона справжня. Ти чуйна, розуміюча, підтримуюча, весела, цікава, кмітлива, розумна, справедлива, надійна. Твоя емоційність це те, що робить тебе тобою, і що б там не казали, це твоя сила. Рідко зустрінеш людину, яка щиро радіє чужим досягненням. Ти дбаєш про те, щоб усе робити добре й нікого не підвести. Ти не звинувачуєш інших, якщо щось не виходить. Ти намагаєшся зрозуміти.</p>
+        </div>
+
+        <div class="section">
+            <p>Так, бувають помилки, але вони нічого не важать порівняно з тим, скільки ти робиш правильно. Ти працьовита й дисциплінована. Навіть якщо раніше так не вважала, зараз точно так. Ти приходиш туди, де важливо бути. Ти пішла в зал для себе. Ти пішла на терапію цього року. Ти не здаєшся, коли важко, пробуєш знову й знову. Інколи щось не виходить, а інколи у тебе виходить: навіть невеликий момент, коли ти на французькій все зрозуміла має значення. Гордись собою.</p>
+        </div>
+
+        <div class="section">
+            <p>І от коли ти поділилась своїм страхом, що будеш «їзгоєм» в універі, я подумав, що це безглуздо. Хто б не захотів дружити з такою подругою? Не намагайся міняти себе заради когось іншого. Завжди вір у себе, повір мені, воно того варте.</p>
+            <p>Бажаю тобі року, повного приємних несподіванок. Нехай збудуться всі мрії. Сподіваюсь, ти побачиш нові країни, зустрінеш нових людей і досягнеш того, чого хочеш. І нарешті навідаєшся до братів у Штатах.</p>
+        </div>
+
+        <div class="closing">
+            <div style="margin-bottom: 30px; font-size: 2em; color: #c77b9f; opacity: 0.5; letter-spacing: 10px;">◈ ❋ ◈</div>
+            <h2>З Новим Роком!</h2>
+            <div class="decorative-ornament">✦ ❋ ✦</div>
+            <p class="yours-truly">Yours truly,</p>
+            <p class="signature">Sasha</p>
+            <div style="margin-top: 35px; font-size: 1.5em; color: #9b8fb5; opacity: 0.5; letter-spacing: 8px;">◈ ❀ ◈</div>
+        </div>
+    </div>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+        
+        for (let i = 0; i < 60; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        for (let i = 0; i < 20; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 6 + 's';
+            starsContainer.appendChild(sparkle);
+        }
+    </script>
+</body>
+</html>
